@@ -1,6 +1,6 @@
 ## Data Fetch in Next js
 
-In Next Js data can be fetched simply by writing function instead of using useEffect() hook. Example:
+In Next Js data can be fetched simply by writing async function instead of using useEffect() hook. Example:
 
 ```jsx
 export const getPosts = async () => {
