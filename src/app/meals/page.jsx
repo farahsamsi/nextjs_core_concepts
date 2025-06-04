@@ -1,36 +1,26 @@
-"use client";
-import React, { useEffect, useState } from "react";
+import React from "react";
+import MealSearchInput from "./components/MealSearchInput";
 
-export default function MealsPage() {
-  const [meals, setMeals] = useState([]);
-  const [search, setSearch] = useState("");
+export default async function MealsPage({ searchParams }) {
+  const query = await searchParams;
 
   const fetchMeals = async () => {
     try {
       const res = await fetch(
-        `https://www.themealdb.com/api/json/v1/1/search.php?s=${search}`
+        `https://www.themealdb.com/api/json/v1/1/search.php?s=${query?.search}`
       );
       const data = await res.json();
-      setMeals(data?.meals || []);
       return data?.meals;
     } catch (err) {
       return [];
     }
   };
 
-  useEffect(() => {
-    fetchMeals();
-  }, [search]);
+  const meals = await fetchMeals();
 
   return (
     <div>
-      <div className="border border-white flex justify-center">
-        <input
-          className="bg-white text-black"
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-        />
-      </div>
+      <MealSearchInput></MealSearchInput>
       <div className="grid grid-cols-4 gap-4">
         {meals?.map((meal) => (
           <div key={meal?.idMeal}>
