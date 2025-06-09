@@ -1,6 +1,13 @@
 import React from "react";
 import MealSearchInput from "./components/MealSearchInput";
 import Link from "next/link";
+import Image from "next/image";
+import { Roboto } from "next/font/google";
+
+const roboto = Roboto({
+  weight: ["400", "700", "800"],
+  subsets: ["latin"],
+});
 
 export const metadata = {
   title: "All Meals",
@@ -30,7 +37,15 @@ export default async function MealsPage({ searchParams }) {
       <div className="grid grid-cols-4 gap-4">
         {meals?.map((meal) => (
           <div key={meal?.idMeal}>
-            <h1 className="text-2xl font-bold">{meal?.strMeal}</h1>
+            <Image
+              src={meal?.strMealThumb}
+              width={641}
+              height={641}
+              alt={meal?.strMeal}
+            />
+            <h1 className={`${roboto.className} text-2xl font-bold`}>
+              {meal?.strMeal}
+            </h1>
             <p>{meal?.strInstructions}</p>
             <Link href={`meals/${meal?.idMeal}`}>Details</Link>
           </div>

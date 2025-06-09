@@ -6,7 +6,6 @@ export const fetchSingleMeal = async (id) => {
       `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`
     );
     const data = await res.json();
-    console.log(data);
     return data?.meals;
   } catch (err) {
     return [];
@@ -30,7 +29,6 @@ export default async function SingleMealPage({ params }) {
   const p = await params;
 
   const [meal] = await fetchSingleMeal(p.id);
-  console.log(meal);
 
   return (
     <div>
