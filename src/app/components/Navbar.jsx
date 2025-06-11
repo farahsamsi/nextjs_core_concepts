@@ -6,7 +6,7 @@ import React from "react";
 const Navbar = () => {
   return (
     <nav className="flex justify-center">
-      <ul className="flex justify-around w-1/2">
+      <ul className="flex gap-4 justify-around md:w-1/2">
         <Link href="/">
           <li>Home</li>
         </Link>
@@ -18,6 +18,12 @@ const Navbar = () => {
         </Link>
         <Link href="/meals">
           <li>Meals</li>
+        </Link>
+        <Link href="/employees">
+          <li>Employees</li>
+        </Link>
+        <Link href="/employees/add">
+          <li>Add Employee</li>
         </Link>
       </ul>
     </nav>
